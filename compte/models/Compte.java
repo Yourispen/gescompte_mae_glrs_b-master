@@ -63,7 +63,8 @@ public abstract class Compte {
         return client;
     }
     public void setClient(Client client) {
-        this.client = client;
+        this.client = client;//relation de Compte vers Client
+        client.addCompte(this);//Relation de Client vers Compte   
     }
     public String getType() {
         return type;

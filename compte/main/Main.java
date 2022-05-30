@@ -1,17 +1,20 @@
 package compte.main;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import compte.models.Cheque;
 import compte.models.Client;
 import compte.models.Compte;
 import compte.models.Epargne;
-import compte.service.Service;
+import compte.service.ICompte;
+//import compte.service.Service;
+import compte.service.ServiceList;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Service service = new Service();
+        ICompte service = new ServiceList();
         Client client;
         String nom, prenom;
         int choix, type, id, numero, choixOp;
@@ -103,7 +106,10 @@ public class Main {
                     id = sc.nextInt();
                     client = service.searchClient(id);
                     if(client!=null){
-                        service.listerCompte(client);
+                        ArrayList<Compte> comptes = client.getComptes();
+                        for (Compte cpt : comptes) {
+                            System.out.println(cpt.toString());
+                        }
                     }
                     else{
                         System.out.println("ce client n'existe pas.");

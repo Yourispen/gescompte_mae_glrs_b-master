@@ -1,10 +1,13 @@
 package compte.models;
 
+import java.util.ArrayList;
+
 public class Client {
     private int id;
     private String nom;
     private String prenom;
     private static int nbre;
+    private ArrayList<Compte> comptes = new ArrayList<>();
   
     //OneToMany
       //List
@@ -13,6 +16,10 @@ public class Client {
     public Client() {
        id=++nbre;
     }
+    public ArrayList<Compte> getComptes() {
+      return comptes;
+    }
+    
     public int getId() {
       return id;
     }
@@ -40,6 +47,8 @@ public class Client {
     public boolean equals(Object obj) {
       return this.id == ((Client)obj).getId();
     }
-      
+    public void addCompte(Compte compte){
+      comptes.add(compte);
+    }
   }
   
